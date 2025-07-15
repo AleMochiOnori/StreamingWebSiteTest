@@ -1,0 +1,33 @@
+.StyleNavBar{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    height: 4rem;
+}
+
+.styleLeft{
+    margin-right: 60px;
+}
+
+.styleInputGroup{
+
+    margin-right: 20px;
+    width: 300px;
+    gap: 20px;
+}
+
+.input-group{
+    display: flex;
+    gap: 20px;
+    height: 100%;
+    font-size: 25px;
+    align-items: center;
+
+}
+
+.form-control{
+    height: 100%;
+   
+    
+}

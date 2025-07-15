@@ -1,0 +1,19 @@
+img{
+    width: 200px;
+    height: 200px;
+}
+
+.slider-container {
+  display: flex;
+  padding: 20px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+
+.title{
+
+    color: white;
+    text-align: center;
+    margin-top: 50px;
+}
