@@ -2,62 +2,54 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import './CarouselSlider.css';
-import type { TvShow } from '../MainComponent';
 
-
-
+interface CarouselSliderItem {
+  id : number;
+  name: string;
+  image: string;
+}
 interface Props {
-  shows: TvShow[];
+  items: CarouselSliderItem[];
+  carouselName : string;
 }
 
-const CarouselSlider: React.FC<Props> = ({ shows }) => {
-  const [activeIndex, setActiveIndex] = React.useState(0);
-  const [isEnd, setIsEnd] = React.useState(false);
+const CarouselSlider: React.FC<Props> = ({ items , carouselName }) => {
   return (
-   <div className="swiper-wrapper-container">
-  {/* ✅ Freccia SINISTRA */}
-  <div
-    className="swiper-button-prev custom-prev"
-    //style={{ visibility: activeIndex > 0 ? 'visible' : 'hidden' }}
-  />
+   <div className="carousel-wrapper">
+  {/* Contenitore interno con overflow */}
+  <div className="swiper-wrapper-container">
+    <Swiper
+      className="carousel-component"
+      modules={[Navigation, Pagination, Scrollbar]}
+      slidesPerView={5}
+      navigation={{
+        prevEl: `.custom-prev-${carouselName}`,
+        nextEl: `.custom-next-${carouselName}`,
+      }}
+      pagination={{ clickable: true }}
+      scrollbar={{ draggable: true }}
+      loop={true}
+      speed={500}
+    >
+      {items.map((item) => (
+        <SwiperSlide key={item.id}>
+          <div className="slide-card">
+            <img
+              src={`https://image.tmdb.org/t/p/w300${item.image}`}
+              alt={item.name}
+            />
+            <h4>{item.name}</h4>
+          </div>
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  </div>
 
-  <Swiper
-    modules={[Navigation, Pagination, Scrollbar]}
-    slidesPerView={5}
-    navigation={{
-      prevEl: '.custom-prev',
-      nextEl: '.custom-next',
-    }}
-    pagination={{ clickable: true }}
-    scrollbar={{ draggable: true }}
-    loop={true}
-    speed={500}
-    onSlideChange={(swiper) => {
-      setActiveIndex(swiper.activeIndex);
-      setIsEnd(swiper.isEnd);
-    }}
-    
-  >
-    {shows.map((show) => (
-      <SwiperSlide key={show.id}>
-        <div className="slide-card">
-          
-          <img
-            src={`https://image.tmdb.org/t/p/w300${show.poster_path}`}
-            alt={show.name}
-          />
-          <h4>{show.name}</h4>
-        </div>
-      </SwiperSlide>
-    ))}
-  </Swiper>
-
-  {/* ✅ Freccia DESTRA */}
-  <div
-    className="swiper-button-next custom-next"
-    //style={{ visibility: isEnd ? 'hidden' : 'visible' }}
-  />
+  {/* Frecce fuori dal contenitore visivamente */}
+  <div className={`swiper-button-prev custom-prev-${carouselName}`} />
+  <div className={`swiper-button-next custom-next-${carouselName}`} />
 </div>
+
 
   );
 };
