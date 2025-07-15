@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
 import './CarouselSlider.css';
@@ -14,14 +14,25 @@ interface Props {
 }
 
 const CarouselSlider: React.FC<Props> = ({ items , carouselName }) => {
+  
+
+{/* DA FINIRE MODIFICA POST PER SCHERMI GRANDI E PICCOLI
+  const [sliderVariable , setSliderVariable] = useState(5);
+  useEffect(() => {
+    let width = window.innerWidth
+    if (width < 1400) {
+      setSliderVariable(2)
+    }
+  } , [window.innerWidth])
+
+*/}
   return (
    <div className="carousel-wrapper">
-  {/* Contenitore interno con overflow */}
   <div className="swiper-wrapper-container">
     <Swiper
       className="carousel-component"
       modules={[Navigation, Pagination, Scrollbar]}
-      slidesPerView={5}
+      slidesPerView={5 /*sliderVariable*/}
       navigation={{
         prevEl: `.custom-prev-${carouselName}`,
         nextEl: `.custom-next-${carouselName}`,
@@ -44,8 +55,6 @@ const CarouselSlider: React.FC<Props> = ({ items , carouselName }) => {
       ))}
     </Swiper>
   </div>
-
-  {/* Frecce fuori dal contenitore visivamente */}
   <div className={`swiper-button-prev custom-prev-${carouselName}`} />
   <div className={`swiper-button-next custom-next-${carouselName}`} />
 </div>
