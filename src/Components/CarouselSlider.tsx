@@ -16,23 +16,51 @@ interface Props {
 const CarouselSlider: React.FC<Props> = ({ items , carouselName }) => {
   
 
-{/* DA FINIRE MODIFICA POST PER SCHERMI GRANDI E PICCOLI
   const [sliderVariable , setSliderVariable] = useState(5);
   useEffect(() => {
-    let width = window.innerWidth
-    if (width < 1400) {
-      setSliderVariable(2)
-    }
-  } , [window.innerWidth])
+    const handleResize = () => {
+      let width = window.innerWidth
+      if (width >= 3840 ) {
+        setSliderVariable(10)
+      }
 
-*/}
+      if (width <= 2500){
+        setSliderVariable(6)
+        if (width <= 1400){
+          setSliderVariable(3)
+          if (width <= 750){
+            setSliderVariable(2)
+            
+          }
+        }
+      }
+    
+  }
+
+  handleResize()
+  window.addEventListener('resize', handleResize);
+  return () => {
+      window.removeEventListener('resize', handleResize);
+  
+  
+
+  };
+
+  } , [])
+  
+
+   
+
+ 
+
+
   return (
    <div className="carousel-wrapper">
   <div className="swiper-wrapper-container">
     <Swiper
       className="carousel-component"
       modules={[Navigation, Pagination, Scrollbar]}
-      slidesPerView={5 /*sliderVariable*/}
+      slidesPerView={sliderVariable}
       navigation={{
         prevEl: `.custom-prev-${carouselName}`,
         nextEl: `.custom-next-${carouselName}`,
@@ -49,14 +77,14 @@ const CarouselSlider: React.FC<Props> = ({ items , carouselName }) => {
               src={`https://image.tmdb.org/t/p/w300${item.image}`}
               alt={item.name}
             />
-            <h4>{item.name}</h4>
+            <h4 className='titleStyle'>{item.name}</h4>
           </div>
         </SwiperSlide>
       ))}
     </Swiper>
   </div>
   <div className={`swiper-button-prev custom-prev-${carouselName}`} />
-  <div className={`swiper-button-next custom-next-${carouselName}`} />
+  <div  className={`swiper-button-next custom-next-${carouselName}`} />
 </div>
 
 

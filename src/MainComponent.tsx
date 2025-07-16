@@ -66,11 +66,15 @@ const MainComponent = () => {
         return <div>Loading...</div>;
     }
 
+
+  
+    
+
   return (
     <>
-    <h1 className='title'>SERIE TV</h1>
+    <h2 className='title'>SERIE TV</h2>
     <CarouselSlider carouselName='tv' items={shows.map((show) => ({id : show.id , name : show.name , image : show.poster_path}))} />
-    <h1 className='title'>FILMS</h1>
+    <h2 className='title'>FILMS</h2>
     <CarouselSlider carouselName='film' items={films.map((film) => ({id : film.id , name : film.name , image : film.poster_path}))} />
     </>
   );

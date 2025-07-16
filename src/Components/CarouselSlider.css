@@ -83,3 +83,40 @@
   background-color: #fff;
 }
 
+
+@media (max-width : 1024px){
+   .swiper-button-prev {
+    display: none;
+  }
+
+  .swiper-button-next {
+    display: none;
+  }
+}
+
+
+@media (max-width : 700px) {
+ 
+
+  .slide-card img {
+    width: 9rem;
+    height: 13rem;
+
+  }
+
+  .titleStyle{
+    font-size: 10px;
+  }
+
+
+}
+
+
+@media (max-width : 360px) {
+   .slide-card img {
+    width: 7rem;
+    height: 10rem;
+
+  }
+
+}

@@ -2,8 +2,12 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
-    height: 4rem;
+    padding: 2rem;
+    height: 6rem;
+    background-color: rgb(146, 32, 32);
+    align-items: center;
+    
+    
 }
 
 .styleLeft{
@@ -30,4 +34,17 @@
     height: 100%;
    
     
+}
+
+.d-inline{
+    display: contents;
+}
+
+
+@media (max-width : 1000px) {
+ .StyleNavBar{
+    padding: 4rem;
+    font-size: 15px;
+    justify-content: center;
+ }
 }
